@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KINETIC WASH — Детейлинг и гидродинамическая мойка | Москва-Сити</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #07090d;
+      --bg-secondary: #0d1118;
+      --surface: rgba(18, 24, 34, 0.65);
+      --surface-strong: rgba(22, 30, 42, 0.88);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-cyan: rgba(0, 240, 255, 0.35);
+      --cyan: #00f0ff;
+      --cyan-deep: #0099ff;
+      --chrome-1: #ffffff;
+      --chrome-2: #a8b8d0;
+      --chrome-3: #5d6f89;
+      --text-main: #f2f6fc;
+      --text-muted: #8b9bb4;
+      --success: #00ffa3;
+      --warning: #ffb800;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: 'Manrope', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: radial-gradient(circle at 80% 10%, rgba(0, 240, 255, 0.06), transparent 40%),
+                  radial-gradient(circle at 15% 60%, rgba(0, 153, 255, 0.05), transparent 45%),
+                  var(--bg-primary);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .font-display {
+      font-family: 'Unbounded', sans-serif;
+      letter-spacing: -0.03em;
+    }
+
+    .container {
+      width: min(1240px, 92vw);
+      margin: 0 auto;
+    }
+
+    /* Chrome Gradient Text */
+    .chrome-text {
+      background: linear-gradient(135deg, #ffffff 0%, #dce7f7 35%, #7e93b2 65%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: chromeShimmer 7s linear infinite;
+    }
+
+    .cyan-glow-text {
+      color: var(--cyan);
+      text-shadow: 0 0 28px rgba(0, 240, 255, 0.45);
+    }
+
+    @keyframes chromeShimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 18px 0;
+      transition: background 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    header.scrolled {
+      background: rgba(7, 9, 13, 0.8);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom-color: var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--cyan), var(--cyan-deep));
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 22px rgba(0, 240, 255, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      background: #07090d;
+      border-radius: 9px;
+    }
+
+    .brand-mark svg {
+      position: relative;
+      z-index: 1;
+      width: 20px;
+      height: 20px;
+      stroke: var(--cyan);
+    }
+
+    .brand-name {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-sub {
+      font-size: 0.7rem;
+      color: var(--cyan);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    /* Magnetic Button with Glare */
+    .magnetic-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 240, 255, 0.45);
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.18), rgba(0, 153, 255, 0.12));
+      color: #ffffff;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      overflow: hidden;
+      text-decoration: none;
+      transition: transform 0.2s var(--ease-out-expo), box-shadow 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 0 24px rgba(0, 240, 255, 0.16);
+      will-change: transform;
+    }
+
+    .magnetic-btn.primary {
+      background: linear-gradient(135deg, var(--cyan), #00b3ff);
+      color: #05080c;
+      border-color: transparent;
+      box-shadow: 0 8px 32px rgba(0, 240, 255, 0.32);
+    }
+
+    .magnetic-btn:hover {
+      box-shadow: 0 10px 36px rgba(0, 240, 255, 0.42);
+      border-color: var(--cyan);
+    }
+
+    .magnetic-btn .glare {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.65) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      opacity: 0;
+      mix-blend-mode: overlay;
+    }
+
+    .magnetic-btn:hover .glare {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 130px 0 80px;
+      overflow: hidden;
+    }
+
+    #fluid-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 45%, transparent 20%, rgba(7, 9, 13, 0.85) 85%),
+                  linear-gradient(to bottom, rgba(7, 9, 13, 0.4) 0%, transparent 30%, var(--bg-primary) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 880px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(15, 22, 32, 0.78);
+      border: 1px solid var(--border-cyan);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 26px;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transform: translateY(18px);
+      animation: heroReveal 0.8s var(--ease-out-expo) 0.1s forwards;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.55); opacity: 0.45; }
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 5.4vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.06;
+      margin-bottom: 24px;
+    }
+
+    .hero-line {
+      display: block;
+      overflow: hidden;
+    }
+
+    .hero-line span {
+      display: inline-block;
+      transform: translateY(110%);
+      opacity: 0;
+      animation: lineSlideUp 0.95s var(--ease-out-expo) forwards;
+    }
+
+    .hero-line:nth-child(1) span { animation-delay: 0.2s; }
+    .hero-line:nth-child(2) span { animation-delay: 0.34s; }
+    .hero-line:nth-child(3) span { animation-delay: 0.48s; }
+
+    @keyframes lineSlideUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes heroReveal {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 1.35vw, 1.18rem);
+      color: var(--text-muted);
+      max-width: 630px;
+      margin-bottom: 36px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroReveal 0.85s var(--ease-out-expo) 0.62s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 54px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroReveal 0.85s var(--ease-out-expo) 0.76s forwards;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 720px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroReveal 0.85s var(--ease-out-expo) 0.9s forwards;
+    }
+
+    .metric-pill {
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      background: rgba(14, 19, 28, 0.72);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .metric-val {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .metric-val span {
+      color: var(--cyan);
+    }
+
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Infinite Marquee */
+    .marquee-wrap {
+      position: relative;
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(11, 15, 22, 0.85);
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 32s linear infinite;
+    }
+
+    .marquee-wrap:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      padding: 0 26px;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--chrome-2);
+      transition: color 0.25s ease;
+    }
+
+    .marquee-item:hover {
+      color: var(--cyan);
+    }
+
+    .marquee-sep {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan);
+    }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Section Commons */
+    section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.6vw, 2.85rem);
+      font-weight: 800;
+      line-height: 1.14;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      max-width: 620px;
+      margin-bottom: 46px;
+    }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Glass Card with Spotlight */
+    .glass-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      overflow: hidden;
+      transition: border-color 0.35s ease, transform 0.35s var(--ease-out-expo);
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        480px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(0, 240, 255, 0.13),
+        transparent 65%
+      );
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    .glass-card:hover::before {
+      opacity: 1;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(0, 240, 255, 0.28);
+    }
+
+    /* 4 Phases Morphing Section */
+    .phases-grid {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .phase-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .phase-tab {
+      text-align: left;
+      padding: 20px 22px;
+      border-radius: var(--radius-md);
+      background: rgba(15, 20, 29, 0.7);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.32s var(--ease-out-expo);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phase-tab:hover {
+      border-color: rgba(0, 240, 255, 0.3);
+      transform: translateX(4px);
+    }
+
+    .phase-tab.active {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.14), rgba(16, 23, 34, 0.92));
+      border-color: var(--cyan);
+      box-shadow: 0 10px 30px rgba(0, 240, 255, 0.14);
+    }
+
+    .phase-num {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.75rem;
+      color: var(--cyan);
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .phase-tab-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .phase-tab-short {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .phase-stage {
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+      min-height: 410px;
+    }
+
+    .phase-morph-content {
+      transition: opacity 0.3s ease, transform 0.35s var(--ease-out-expo);
+    }
+
+    .phase-morph-content.switching {
+      opacity: 0;
+      transform: translateY(10px) scale(0.985);
+    }
+
+    .phase-tag {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      color: var(--cyan);
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .phase-stage h3 {
+      font-size: 1.55rem;
+      margin-bottom: 14px;
+    }
+
+    .phase-stage p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      margin-bottom: 24px;
+    }
+
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .telemetry-box {
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background: rgba(8, 12, 18, 0.78);
+      border: 1px solid var(--border);
+    }
+
+    .telemetry-key {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .telemetry-val {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .telemetry-val.accent {
+      color: var(--cyan);
+    }
+
+    .phase-visual {
+      height: 100%;
+      min-height: 290px;
+      border-radius: var(--radius-md);
+      background: radial-gradient(circle at center, rgba(0, 240, 255, 0.12), rgba(7, 10, 15, 0.92));
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    .phase-visual svg {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      filter: drop-shadow(0 0 18px rgba(0, 240, 255, 0.35));
+    }
+
+    .scan-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      box-shadow: 0 0 14px var(--cyan);
+      animation: scanSweep 3.2s ease-in-out infinite;
+    }
+
+    @keyframes scanSweep {
+      0%, 100% { top: 12%; opacity: 0.35; }
+      50% { top: 86%; opacity: 1; }
+    }
+
+    /* Car Class Switcher & Tariffs */
+    .tariffs-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 42px;
+    }
+
+    .class-switcher {
+      position: relative;
+      display: inline-grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 6px;
+      border-radius: 999px;
+      background: rgba(14, 19, 28, 0.9);
+      border: 1px solid var(--border);
+      min-width: min(100%, 490px);
+    }
+
+    .class-pill-indicator {
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      left: 6px;
+      width: calc((100% - 12px) / 3);
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--cyan), var(--cyan-deep));
+      box-shadow: 0 0 24px rgba(0, 240, 255, 0.45);
+      transition: transform 0.42s var(--ease-spring);
+      z-index: 0;
+    }
+
+    .class-btn {
+      position: relative;
+      z-index: 1;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 0.86rem;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .class-btn.active {
+      color: #04070b;
+    }
+
+    .tariffs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .tariff-card {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .tariff-card.featured {
+      border-color: rgba(0, 240, 255, 0.48);
+      background: linear-gradient(180deg, rgba(0, 240, 255, 0.09) 0%, rgba(16, 22, 32, 0.85) 100%);
+      box-shadow: 0 18px 50px rgba(0, 240, 255, 0.12);
+    }
+
+    .tariff-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .tariff-name {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .tariff-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--chrome-2);
+    }
+
+    .tariff-card.featured .tariff-badge {
+      background: var(--cyan);
+      color: #05080c;
+    }
+
+    .tariff-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .tariff-price {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--text-main);
+    }
+
+    .tariff-time {
+      font-size: 0.85rem;
+      color: var(--cyan);
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .tariff-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .tariff-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #d2dceb;
+    }
+
+    .tariff-list li::before {
+      content: '✦';
+      color: var(--cyan);
+      font-size: 0.8rem;
+      margin-top: 2px;
+    }
+
+    /* Interactive Calculator & Moscow-City Parking Map */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .calc-card {
+      padding: 34px;
+    }
+
+    .calc-group-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .program-pills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .prog-pill {
+      padding: 14px 12px;
+      border-radius: var(--radius-sm);
+      background: rgba(10, 14, 20, 0.8);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+
+    .prog-pill.active {
+      border-color: var(--cyan);
+      background: rgba(0, 240, 255, 0.13);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.16);
+    }
+
+    .prog-pill strong {
+      display: block;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.84rem;
+      margin-bottom: 4px;
+    }
+
+    .prog-pill span {
+      font-size: 0.78rem;
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .addons-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .addon-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background: rgba(10, 14, 20, 0.72);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.25s ease, background 0.25s ease;
+      user-select: none;
+    }
+
+    .addon-item:hover {
+      border-color: rgba(0, 240, 255, 0.35);
+    }
+
+    .addon-item input {
+      display: none;
+    }
+
+    .addon-item.checked {
+      border-color: var(--cyan);
+      background: rgba(0, 240, 255, 0.1);
+    }
+
+    .addon-info strong {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--text-main);
+    }
+
+    .addon-info small {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .addon-price {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--cyan);
+      white-space: nowrap;
+    }
+
+    .calc-summary {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    .calc-totals {
+      display: flex;
+      gap: 28px;
+    }
+
+    .total-block span {
+      display: block;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .total-block strong {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.55rem;
+      color: var(--text-main);
+    }
+
+    .total-block strong.cyan {
+      color: var(--cyan);
+    }
+
+    /* Parking Map Card */
+    .parking-card {
+      padding: 30px;
+    }
+
+    .parking-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .parking-badge {
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(0, 255, 163, 0.12);
+      border: 1px solid rgba(0, 255, 163, 0.35);
+      color: var(--success);
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .parking-map {
+      background: #080b10;
+      border: 1px solid rgba(0, 240, 255, 0.22);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .parking-legend {
+      display: flex;
+      gap: 16px;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot-free { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); }
+    .dot-busy { width: 8px; height: 8px; border-radius: 50%; background: #ff4d6d; }
+    .dot-sel { width: 8px; height: 8px; border-radius: 50%; background: var(--success); }
+
+    .bays-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .bay-slot {
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: rgba(16, 22, 31, 0.85);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: left;
+    }
+
+    .bay-slot.free:hover {
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    .bay-slot.selected {
+      border-color: var(--success);
+      background: rgba(0, 255, 163, 0.12);
+      box-shadow: 0 0 18px rgba(0, 255, 163, 0.2);
+    }
+
+    .bay-slot.busy {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .bay-code {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bay-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .route-hint {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      background: rgba(12, 17, 25, 0.7);
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--cyan);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 46px 0;
+      background: #05070a;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    /* Booking Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 5, 9, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-window {
+      width: min(520px, 100%);
+      background: #0d121a;
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.75), 0 0 40px rgba(0, 240, 255, 0.16);
+      transform: translateY(20px) scale(0.96);
+      transition: transform 0.38s var(--ease-out-expo);
+      position: relative;
+    }
+
+    .modal-backdrop.open .modal-window {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .field-group input, .field-group select {
+      width: 100%;
+      padding: 13px 15px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: #070a0f;
+      color: var(--text-main);
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.25s ease;
+    }
+
+    .field-group input:focus, .field-group select:focus {
+      border-color: var(--cyan);
+    }
+
+    .pass-ticket {
+      margin-top: 18px;
+      padding: 20px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.14), rgba(0, 255, 163, 0.08));
+      border: 1px dashed var(--cyan);
+      text-align: center;
+    }
+
+    .pass-code {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.65rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      color: var(--cyan);
+      margin: 8px 0;
+    }
+
+    @media (max-width: 980px) {
+      .phases-grid, .workspace-grid, .tariffs-grid {
+        grid-template-columns: 1fr;
+      }
+      .phase-stage {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-metrics, .program-pills, .addons-list {
+        grid-template-columns: 1fr;
+      }
+      .class-switcher {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="site-header">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-name">KINETIC WASH</span>
+          <span class="brand-sub">Hydrodynamic Lab</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#phases">Технология</a>
+        <a href="#tariffs">Тарифы</a>
+        <a href="#calculator">Калькулятор и Боксы</a>
+      </nav>
+
+      <button class="magnetic-btn primary open-booking-btn" data-program="KINETIC PRO">
+        <span class="glare"></span>
+        Записаться в бокс
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero with Interactive Fluid Canvas -->
+    <section class="hero">
+      <canvas id="fluid-canvas"></canvas>
+      <div class="hero-vignette"></div>
+
+      <div class="container hero-content">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          МОСКВА-СИТИ • ПАРКИНГ −2 УРОВЕНЬ • СЕКТОР B • 24/7
+        </div>
+
+        <h1 class="hero-title">
+          <span class="hero-line"><span class="chrome-text">ГИДРОДИНАМИКА</span></span>
+          <span class="hero-line"><span class="cyan-glow-text">ИДЕАЛЬНОГО</span></span>
+          <span class="hero-line"><span class="chrome-text">ЗЕРКАЛА КУЗОВА</span></span>
+        </h1>
+
+        <p class="hero-desc">
+          Бесконтактный детейлинг-комплекс с телеметрическим контролем давления, деионизированной водой 0 PPM и двухфазной химией Koch-Chemie. Ни единой микроцарапины на лаке.
+        </p>
+
+        <div class="hero-actions">
+          <button class="magnetic-btn primary open-booking-btn" data-program="KINETIC PRO">
+            <span class="glare"></span>
+            Забронировать время
+          </button>
+          <a href="#phases" class="magnetic-btn">
+            <span class="glare"></span>
+            Изучить 4 фазы мойки
+          </a>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-pill">
+            <div class="metric-val">0 <span>PPM</span></div>
+            <div class="metric-label">Осмос-ополаскивание без разводов</div>
+          </div>
+          <div class="metric-pill">
+            <div class="metric-val">38<span>°C</span></div>
+            <div class="metric-label">Термостабилизация активной пены</div>
+          </div>
+          <div class="metric-pill">
+            <div class="metric-val">45 <span>МИН</span></div>
+            <div class="metric-label">Средний цикл комплексной сессии</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Infinite Marquee -->
+    <div class="marquee-wrap" aria-label="Технологии KINETIC WASH">
+      <div class="marquee-track">
+        <div class="marquee-item">KOCH-CHEMIE GERMANY <span class="marquee-sep"></span></div>
+        <div class="marquee-item">DEIONIZED WATER 0 PPM <span class="marquee-sep"></span></div>
+        <div class="marquee-item">TURBO WARM AIR DRYING <span class="marquee-sep"></span></div>
+        <div class="marquee-item">PH-NEUTRAL NANO FOAM <span class="marquee-sep"></span></div>
+        <div class="marquee-item">CERAMIC HYDRO SEALANT <span class="marquee-sep"></span></div>
+        <div class="marquee-item">TELEMETRY PRESSURE CONTROL <span class="marquee-sep"></span></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="marquee-item">KOCH-CHEMIE GERMANY <span class="marquee-sep"></span></div>
+        <div class="marquee-item">DEIONIZED WATER 0 PPM <span class="marquee-sep"></span></div>
+        <div class="marquee-item">TURBO WARM AIR DRYING <span class="marquee-sep"></span></div>
+        <div class="marquee-item">PH-NEUTRAL NANO FOAM <span class="marquee-sep"></span></div>
+        <div class="marquee-item">CERAMIC HYDRO SEALANT <span class="marquee-sep"></span></div>
+        <div class="marquee-item">TELEMETRY PRESSURE CONTROL <span class="marquee-sep"></span></div>
+      </div>
+    </div>
+
+    <!-- 4 Phases Morphing Section -->
+    <section id="phases">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-kicker">// ПРОТОКОЛ ОЧИСТКИ</span>
+          <h2 class="section-title chrome-text">4 фазы идеальной чистоты</h2>
+          <p class="section-subtitle">
+            Переключайте этапы цикла, чтобы увидеть параметры телеметрии, химический состав и векторную схему обработки кузова.
+          </p>
+        </div>
+
+        <div class="phases-grid reveal">
+          <div class="phase-tabs" id="phase-tabs">
+            <button class="phase-tab active" data-phase="0">
+              <span class="phase-num">ФАЗА 01</span>
+              <div class="phase-tab-title">Эмульсионный пре-вош</div>
+              <div class="phase-tab-short">Бесконтактное расщепление статики</div>
+            </button>
+            <button class="phase-tab" data-phase="1">
+              <span class="phase-num">ФАЗА 02</span>
+              <div class="phase-tab-title">Крио-пена &amp; Кисти</div>
+              <div class="phase-tab-short">Деликатная проработка шильдиков и дисков</div>
+            </button>
+            <button class="phase-tab" data-phase="2">
+              <span class="phase-num">ФАЗА 03</span>
+              <div class="phase-tab-title">Гидрополимерный щит</div>
+              <div class="phase-tab-short">Консервация лака и антидождь</div>
+            </button>
+            <button class="phase-tab" data-phase="3">
+              <span class="phase-num">ФАЗА 04</span>
+              <div class="phase-tab-title">Осмос &amp; Турбосушка</div>
+              <div class="phase-tab-short">Бесконтактный обдув фильтрованным воздухом</div>
+            </button>
+          </div>
+
+          <div class="glass-card phase-stage">
+            <div class="phase-morph-content" id="phase-morph-content">
+              <span class="phase-tag" id="phase-tag">ЭТАП 1 ИЗ 4 • ПРЕДВАРИТЕЛЬНАЯ ЭМУЛЬСИЯ</span>
+              <h3 id="phase-title">Эмульсионный пре-вош</h3>
+              <p id="phase-desc">
+                Нанесение слабощелочной эмульсии на сухой кузов под низким давлением. Состав инкапсулирует абразивные частицы песка и реагентов, безопасно отделяя их от лакокрасочного покрытия без трения.
+              </p>
+
+              <div class="telemetry-grid">
+                <div class="telemetry-box">
+                  <div class="telemetry-key">Температура воды</div>
+                  <div class="telemetry-val accent" id="tel-temp">38.5 °C</div>
+                </div>
+                <div class="telemetry-box">
+                  <div class="telemetry-key">Рабочее давление</div>
+                  <div class="telemetry-val" id="tel-press">115 BAR</div>
+                </div>
+                <div class="telemetry-box">
+                  <div class="telemetry-key">Время экспозиции</div>
+                  <div class="telemetry-val" id="tel-time">06 МИН</div>
+                </div>
+                <div class="telemetry-box">
+                  <div class="telemetry-key">Состав Koch-Chemie</div>
+                  <div class="telemetry-val accent" id="tel-chem">Vorreiniger B</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="phase-visual">
+              <div class="scan-line"></div>
+              <svg id="phase-svg" viewBox="0 0 240 200" fill="none">
+                <path d="M35 125 C55 82, 185 82, 205 125 L215 142 L25 142 Z" stroke="#00f0ff" stroke-width="2.5" fill="rgba(0,240,255,0.08)"/>
+                <circle cx="68" cy="144" r="18" stroke="#ffffff" stroke-width="2.5" fill="#07090d"/>
+                <circle cx="172" cy="144" r="18" stroke="#ffffff" stroke-width="2.5" fill="#07090d"/>
+                <path d="M55 55 Q120 25 185 55" stroke="#00f0ff" stroke-width="2" stroke-dasharray="5 5"/>
+                <circle cx="80" cy="68" r="3" fill="#00f0ff"/>
+                <circle cx="120" cy="60" r="4" fill="#00f0ff"/>
+                <circle cx="160" cy="68" r="3" fill="#00f0ff"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Car Class Selector & Tariffs -->
+    <section id="tariffs">
+      <div class="container">
+        <div class="tariffs-header reveal">
+          <div>
+            <span class="section-kicker">// ТАРИФНАЯ МАТРИЦА</span>
+            <h2 class="section-title chrome-text">Программы мойки</h2>
+          </div>
+
+          <div class="class-switcher" role="tablist" aria-label="Выбор класса автомобиля">
+            <div class="class-pill-indicator" id="class-indicator"></div>
+            <button class="class-btn active" data-class="0">Седан / Купе</button>
+            <button class="class-btn" data-class="1">Кроссовер</button>
+            <button class="class-btn" data-class="2">Внедорожник</button>
+          </div>
+        </div>
+
+        <div class="tariffs-grid reveal">
+          <!-- Tariff 1 -->
+          <div class="glass-card tariff-card">
+            <div>
+              <div class="tariff-top">
+                <span class="tariff-name">KINETIC LITE</span>
+                <span class="tariff-badge">Экспресс</span>
+              </div>
+              <div class="tariff-price-row">
+                <span class="tariff-price" data-prices="2400,2800,3300">2 400 ₽</span>
+              </div>
+              <div class="tariff-time">⏱ ~35 минут • 2 фазы</div>
+              <ul class="tariff-list">
+                <li>Бесконтактный пре-вош Koch-Chemie</li>
+                <li>Ручная мойка pH-нейтральным шампунем</li>
+                <li>Очистка колесных дисков и арок</li>
+                <li>Ополаскивание осмосом и турбосушка</li>
+              </ul>
+            </div>
+            <button class="magnetic-btn select-tariff-btn" data-tariff="KINETIC LITE">
+              <span class="glare"></span>
+              Выбрать KINETIC LITE
+            </button>
+          </div>
+
+          <!-- Tariff 2 -->
+          <div class="glass-card tariff-card featured">
+            <div>
+              <div class="tariff-top">
+                <span class="tariff-name">KINETIC PRO</span>
+                <span class="tariff-badge">Выбор резидентов</span>
+              </div>
+              <div class="tariff-price-row">
+                <span class="tariff-price" data-prices="3900,4500,5200">3 900 ₽</span>
+              </div>
+              <div class="tariff-time">⏱ ~55 минут • 3 фазы + салон</div>
+              <ul class="tariff-list">
+                <li>Полный 3-фазный детейлинг-комплекс кузова</li>
+                <li>Консервация лака гидрополимером ProtectorWax</li>
+                <li>Деликатная уборка салона и багажника пылесосом</li>
+                <li>Очистка стекол изнутри и чернение резины</li>
+              </ul>
+            </div>
+            <button class="magnetic-btn primary select-tariff-btn" data-tariff="KINETIC PRO">
+              <span class="glare"></span>
+              Выбрать KINETIC PRO
+            </button>
+          </div>
+
+          <!-- Tariff 3 -->
+          <div class="glass-card tariff-card">
+            <div>
+              <div class="tariff-top">
+                <span class="tariff-name">CERAMIC ULTRA</span>
+                <span class="tariff-badge">Максимум</span>
+              </div>
+              <div class="tariff-price-row">
+                <span class="tariff-price" data-prices="6800,7600,8500">6 800 ₽</span>
+              </div>
+              <div class="tariff-time">⏱ ~90 минут • 4 фазы + кварц</div>
+              <ul class="tariff-list">
+                <li>Глубокая деконтаминация кузова от битума и металла</li>
+                <li>Нанесение кварцевого покрытия Hydro Sealant</li>
+                <li>Антидождь на переднюю полусферу стекол</li>
+                <li>Уход за кожей салона матовым кондиционером</li>
+              </ul>
+            </div>
+            <button class="magnetic-btn select-tariff-btn" data-tariff="CERAMIC ULTRA">
+              <span class="glare"></span>
+              Выбрать CERAMIC ULTRA
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Calculator & Moscow-City Parking Map -->
+    <section id="calculator">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-kicker">// КОНФИГУРАТОР СЕССИИ</span>
+          <h2 class="section-title chrome-text">Калькулятор и схема паркинга</h2>
+          <p class="section-subtitle">
+            Соберите индивидуальный набор опций для выбранного класса авто и выберите свободный бокс на −2 уровне Москва-Сити.
+          </p>
+        </div>
+
+        <div class="workspace-grid reveal">
+          <!-- Calculator -->
+          <div class="glass-card calc-card">
+            <div class="calc-group-title">1. Базовая программа (<span id="calc-class-label">Седан / Купе</span>)</div>
+            <div class="program-pills" id="calc-programs">
+              <div class="prog-pill" data-prog="KINETIC LITE" data-prices="2400,2800,3300" data-mins="35">
+                <strong>KINETIC LITE</strong>
+                <span class="prog-price-tag">2 400 ₽</span>
+              </div>
+              <div class="prog-pill active" data-prog="KINETIC PRO" data-prices="3900,4500,5200" data-mins="55">
+                <strong>KINETIC PRO</strong>
+                <span class="prog-price-tag">3 900 ₽</span>
+              </div>
+              <div class="prog-pill" data-prog="CERAMIC ULTRA" data-prices="6800,7600,8500" data-mins="90">
+                <strong>CERAMIC ULTRA</strong>
+                <span class="prog-price-tag">6 800 ₽</span>
+              </div>
+            </div>
+
+            <div class="calc-group-title">2. Дополнительные опции</div>
+            <div class="addons-list" id="addons-list">
+              <label class="addon-item">
+                <input type="checkbox" data-price="1400" data-mins="20" data-name="Антидождь (лобовое + боковые)">
+                <div class="addon-info">
+                  <strong>Антидождь Aquapel</strong>
+                  <small>Лобовое + передние стекла (+20 мин)</small>
+                </div>
+                <span class="addon-price">+1 400 ₽</span>
+              </label>
+
+              <label class="addon-item">
+                <input type="checkbox" data-price="1800" data-mins="25" data-name="Очистка от битума и металлических вкраплений">
+                <div class="addon-info">
+                  <strong>Антибитум &amp; Iron-X</strong>
+                  <small>Глубокая очистка лака (+25 мин)</small>
+                </div>
+                <span class="addon-price">+1 800 ₽</span>
+              </label>
+
+              <label class="addon-item">
+                <input type="checkbox" data-price="1600" data-mins="20" data-name="Крем-кондиционер кожи салона">
+                <div class="addon-info">
+                  <strong>Уход за кожей Nappa</strong>
+                  <small>Матовый защитный лосьон (+20 мин)</small>
+                </div>
+                <span class="addon-price">+1 600 ₽</span>
+              </label>
+
+              <label class="addon-item">
+                <input type="checkbox" data-price="1200" data-mins="15" data-name="Озонация и антибактериальная обработка">
+                <div class="addon-info">
+                  <strong>Озонация салона</strong>
+                  <small>Удаление запахов и бактерий (+15 мин)</small>
+                </div>
+                <span class="addon-price">+1 200 ₽</span>
+              </label>
+            </div>
+
+            <div class="calc-summary">
+              <div class="calc-totals">
+                <div class="total-block">
+                  <span>Время сессии</span>
+                  <strong id="total-time">55 мин</strong>
+                </div>
+                <div class="total-block">
+                  <span>Итоговая стоимость</span>
+                  <strong class="cyan" id="total-price">3 900 ₽</strong>
+                </div>
+              </div>
+
+              <button class="magnetic-btn primary" id="book-configured-btn">
+                <span class="glare"></span>
+                Забронировать расчет
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Parking Map -->
+          <div class="glass-card parking-card">
+            <div class="parking-header">
+              <div>
+                <h3 style="font-size: 1.15rem;">Москва-Сити • Уровень −2</h3>
+                <span style="font-size: 0.82rem; color: var(--text-muted);">Сектор B • Въезд со стороны Пресненской наб.</span>
+              </div>
+              <span class="parking-badge">4 БОКСА ОНЛАЙН</span>
+            </div>
+
+            <div class="parking-map">
+              <div class="parking-legend">
+                <span class="legend-item"><span class="dot-free"></span> Свободен</span>
+                <span class="legend-item"><span class="dot-sel"></span> Выбран</span>
+                <span class="legend-item"><span class="dot-busy"></span> Занят</span>
+              </div>
+
+              <div class="bays-grid" id="bays-grid">
+                <button type="button" class="bay-slot free selected" data-bay="B-01">
+                  <div class="bay-code"><span>БОКС B-01</span> <span style="color: var(--success);">●</span></div>
+                  <div class="bay-desc">Гидро-пост • Свободен сейчас</div>
+                </button>
+                <button type="button" class="bay-slot busy" data-bay="B-02" disabled>
+                  <div class="bay-code"><span>БОКС B-02</span> <span style="color: #ff4d6d;">●</span></div>
+                  <div class="bay-desc">В работе до 19:15</div>
+                </button>
+                <button type="button" class="bay-slot free" data-bay="B-03">
+                  <div class="bay-code"><span>БОКС B-03</span> <span style="color: var(--cyan);">●</span></div>
+                  <div class="bay-desc">Керамика / Турбосушка</div>
+                </button>
+                <button type="button" class="bay-slot free" data-bay="B-04">
+                  <div class="bay-code"><span>БОКС B-04</span> <span style="color: var(--cyan);">●</span></div>
+                  <div class="bay-desc">VIP-бокс • Lounge зона</div>
+                </button>
+              </div>
+            </div>
+
+            <div class="route-hint">
+              <strong>Навигация по паркингу:</strong> После шлагбаума держитесь левее по синей неоновой разметке «KINETIC SECTOR B». Госномер считывается автоматически для пропуска.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <strong style="font-family: 'Unbounded', sans-serif; color: var(--text-main);">KINETIC WASH</strong> — Премиальный детейлинг в Москва-Сити, −2 уровень, сектор B.
+      </div>
+      <div>Ежедневно 24/7 • +7 (495) 018-92-40</div>
+    </div>
+  </footer>
+
+  <!-- Booking Modal -->
+  <div class="modal-backdrop" id="booking-modal" aria-hidden="true">
+    <div class="modal-window">
+      <button class="modal-close" id="close-modal-btn" aria-label="Закрыть">✕</button>
+      <span class="section-kicker" style="margin-bottom: 6px;">// ОНЛАЙН-ПРОПУСК</span>
+      <h3 style="font-size: 1.4rem;">Бронирование бокса</h3>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;" id="modal-summary-text">
+        Программа: KINETIC PRO • Седан / Купе • Бокс B-01 • 3 900 ₽
+      </p>
+
+      <form class="form-grid" id="booking-form">
+        <div class="field-group">
+          <label for="client-name">Ваше имя</label>
+          <input type="text" id="client-name" placeholder="Александр" required />
+        </div>
+        <div class="field-group">
+          <label for="car-plate">Госномер автомобиля (для шлагбаума)</label>
+          <input type="text" id="car-plate" placeholder="А 777 АА 799" required />
+        </div>
+        <div class="field-group">
+          <label for="visit-time">Удобное время заезда</label>
+          <select id="visit-time">
+            <option>Сегодня, ближайший слот (+15 мин)</option>
+            <option>Сегодня, 19:30</option>
+            <option>Сегодня, 21:00</option>
+            <option>Завтра, 10:00</option>
+            <option>Завтра, 14:00</option>
+          </select>
+        </div>
+        <button type="submit" class="magnetic-btn primary" style="width: 100%; margin-top: 6px;">
+          <span class="glare"></span>
+          Сгенерировать цифровой пропуск
+        </button>
+      </form>
+
+      <div class="pass-ticket" id="pass-ticket" style="display: none;">
+        <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted);">
+          Пропуск на −2 уровень активирован
+        </div>
+        <div class="pass-code" id="generated-pass-code">KW-8492</div>
+        <div style="font-size: 0.84rem; color: var(--text-main);" id="pass-details">
+          Бокс B-01 • Шлагбаум откроется автоматически по номеру авто
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. Interactive Fluid Canvas in Hero
+    (() => {
+      const canvas = document.getElementById('fluid-canvas');
+      const ctx = canvas.getContext('2d');
+      let width, height;
+      const pointer = { x: -999, y: -999, vx: 0, vy: 0 };
+      const droplets = [];
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = document.querySelector('.hero').offsetHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      for (let i = 0; i < 42; i++) {
+        droplets.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 2.4 + 0.8,
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          alpha: Math.random() * 0.5 + 0.2
+        });
+      }
+
+      function onMove(x, y) {
+        pointer.vx = x - pointer.x;
+        pointer.vy = y - pointer.y;
+        pointer.x = x;
+        pointer.y = y;
+      }
+
+      window.addEventListener('mousemove', e => onMove(e.clientX, e.clientY + window.scrollY));
+      window.addEventListener('touchmove', e => {
+        if (e.touches[0]) onMove(e.touches[0].clientX, e.touches[0].clientY + window.scrollY);
+      }, { passive: true });
+
+      let t = 0;
+      function animate() {
+        t += 0.014;
+        ctx.clearRect(0, 0, width, height);
+
+        // Fluid sine waves
+        for (let w = 0; w < 3; w++) {
+          ctx.beginPath();
+          const baseY = height * (0.42 + w * 0.14);
+          ctx.moveTo(0, baseY);
+          for (let x = 0; x <= width; x += 24) {
+            const dist = Math.hypot(x - pointer.x, baseY - pointer.y);
+            const ripple = dist < 240 ? Math.sin(dist * 0.04 - t * 4) * (1 - dist / 240) * 28 : 0;
+            const y = baseY
+              + Math.sin(x * 0.004 + t + w * 1.4) * (24 + w * 8)
+              + Math.cos(x * 0.009 - t * 0.8) * 12
+              + ripple;
+            ctx.lineTo(x, y);
+          }
+          ctx.strokeStyle = w === 0
+            ? 'rgba(0, 240, 255, 0.24)'
+            : w === 1
+              ? 'rgba(0, 153, 255, 0.16)'
+              : 'rgba(255, 255, 255, 0.07)';
+          ctx.lineWidth = w === 0 ? 2 : 1.3;
+          ctx.stroke();
+        }
+
+        // Micro water droplets
+        for (const d of droplets) {
+          const dx = d.x - pointer.x;
+          const dy = d.y - pointer.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 140 && dist > 1) {
+            d.vx += (dx / dist) * 0.22;
+            d.vy += (dy / dist) * 0.22;
+          }
+          d.x += d.vx;
+          d.y += d.vy;
+          d.vx *= 0.96;
+          d.vy *= 0.96;
+
+          if (d.x < 0) d.x = width;
+          if (d.x > width) d.x = 0;
+          if (d.y < 0) d.y = height;
+          if (d.y > height) d.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(0, 240, 255, ${d.alpha})`;
+          ctx.fill();
+        }
+
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
+    // 2. Header Scroll & Scroll Reveal
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.14 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // 3. Magnetic Buttons & Glass Card Spotlight
+    document.querySelectorAll('.magnetic-btn').forEach(btn => {
+      const glare = btn.querySelector('.glare');
+      btn.addEventListener('mousemove', e => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const moveX = (x - rect.width / 2) * 0.22;
+        const moveY = (y - rect.height / 2) * 0.22;
+        btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        if (glare) {
+          glare.style.left = `${x}px`;
+          glare.style.top = `${y}px`;
+        }
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0)';
+      });
+    });
+
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      });
+    });
+
+    // 4. 4 Phases Morphing Data
+    const phasesData = [
+      {
+        tag: 'ЭТАП 1 ИЗ 4 • ПРЕДВАРИТЕЛЬНАЯ ЭМУЛЬСИЯ',
+        title: 'Эмульсионный пре-вош',
+        desc: 'Нанесение слабощелочной эмульсии на сухой кузов под низким давлением. Состав инкапсулирует абразивные частицы песка и реагентов, безопасно отделяя их от лакокрасочного покрытия без трения.',
+        temp: '38.5 °C',
+        press: '115 BAR',
+        time: '06 МИН',
+        chem: 'Vorreiniger B',
+        svg: `
+          <path d="M35 125 C55 82, 185 82, 205 125 L215 142 L25 142 Z" stroke="#00f0ff" stroke-width="2.5" fill="rgba(0,240,255,0.08)"/>
+          <circle cx="68" cy="144" r="18" stroke="#ffffff" stroke-width="2.5" fill="#07090d"/>
+          <circle cx="172" cy="144" r="18" stroke="#ffffff" stroke-width="2.5" fill="#07090d"/>
+          <path d="M55 55 Q120 25 185 55" stroke="#00f0ff" stroke-width="2" stroke-dasharray="5 5"/>
+          <circle cx="80" cy="68" r="3" fill="#00f0ff"/><circle cx="120" cy="60" r="4" fill="#00f0ff"/><circle cx="160" cy="68" r="3" fill="#00f0ff"/>
+        `
+      },
+      {
+        tag: 'ЭТАП 2 ИЗ 4 • КРИО-ПЕНА И ДЕЛИКАТНЫЕ КИСТИ',
+        title: 'Крио-пена & Кисти',
+        desc: 'Густая pH-нейтральная пена с высокой смазывающей способностью. Крупнопористые губки и ультрамягкие кисти с разделением зон исключают перенос микрочастиц на глянцевые стойки.',
+        temp: '34.0 °C',
+        press: '85 BAR',
+        time: '14 МИН',
+        chem: 'Gentle Snow Foam',
+        svg: `
+          <path d="M35 125 C55 82, 185 82, 205 125 L215 142 L25 142 Z" stroke="#ffffff" stroke-width="2.5" fill="rgba(255,255,255,0.08)"/>
+          <circle cx="68" cy="144" r="18" stroke="#00f0ff" stroke-width="2.5" fill="#07090d"/>
+          <circle cx="172" cy="144" r="18" stroke="#00f0ff" stroke-width="2.5" fill="#07090d"/>
+          <circle cx="95" cy="84" r="10" stroke="#00f0ff" stroke-width="2"/>
+          <circle cx="125" cy="78" r="13" stroke="#00f0ff" stroke-width="2"/>
+          <circle cx="152" cy="86" r="9" stroke="#00f0ff" stroke-width="2"/>
+        `
+      },
+      {
+        tag: 'ЭТАП 3 ИЗ 4 • ГИДРОФОБНАЯ КОНСЕРВАЦИЯ',
+        title: 'Гидрополимерный щит',
+        desc: 'Молекулярное связывание консервирующего состава с верхним слоем лака. Формирует зеркальный гидрофобный барьер с краевым углом смачивания 108°, отталкивающий грязь и воду.',
+        temp: '30.0 °C',
+        press: '60 BAR',
+        time: '08 МИН',
+        chem: 'ProtectorWax',
+        svg: `
+          <path d="M35 125 C55 82, 185 82, 205 125 L215 142 L25 142 Z" stroke="#00ffa3" stroke-width="2.5" fill="rgba(0,255,163,0.09)"/>
+          <path d="M28 118 C52 70, 188 70, 212 118" stroke="#00f0ff" stroke-width="2" stroke-dasharray="6 4"/>
+          <circle cx="68" cy="144" r="18" stroke="#ffffff" stroke-width="2.5" fill="#07090d"/>
+          <circle cx="172" cy="144" r="18" stroke="#ffffff" stroke-width="2.5" fill="#07090d"/>
+        `
+      },
+      {
+        tag: 'ЭТАП 4 ИЗ 4 • ДЕИОНИЗИРОВАННЫЙ ФИНИШ',
+        title: 'Осмос & Турбосушка',
+        desc: 'Финальное ополаскивание водой с нулевой минерализацией (0 PPM) и сушка подогретым фильтрованным потоком воздуха 55 °C, выдувающим влагу из зеркал, молдингов и решеток.',
+        temp: '55.0 °C (Воздух)',
+        press: '0 PPM TDS',
+        time: '12 МИН',
+        chem: 'Osmosis Pure H2O',
+        svg: `
+          <path d="M35 125 C55 82, 185 82, 205 125 L215 142 L25 142 Z" stroke="#00f0ff" stroke-width="2.5" fill="rgba(0,240,255,0.12)"/>
+          <line x1="25" y1="68" x2="95" y2="68" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="45" y1="54" x2="135" y2="54" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+          <line x1="85" y1="40" x2="185" y2="40" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="68" cy="144" r="18" stroke="#ffffff" stroke-width="2.5" fill="#07090d"/>
+          <circle cx="172" cy="144" r="18" stroke="#ffffff" stroke-width="2.5" fill="#07090d"/>
+        `
+      }
+    ];
+
+    const phaseTabs = document.querySelectorAll('.phase-tab');
+    const morphBox = document.getElementById('phase-morph-content');
+    phaseTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        if (tab.classList.contains('active')) return;
+        phaseTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const item = phasesData[Number(tab.dataset.phase)];
+        morphBox.classList.add('switching');
+        setTimeout(() => {
+          document.getElementById('phase-tag').textContent = item.tag;
+          document.getElementById('phase-title').textContent = item.title;
+          document.getElementById('phase-desc').textContent = item.desc;
+          document.getElementById('tel-temp').textContent = item.temp;
+          document.getElementById('tel-press').textContent = item.press;
+          document.getElementById('tel-time').textContent = item.time;
+          document.getElementById('tel-chem').textContent = item.chem;
+          document.getElementById('phase-svg').innerHTML = item.svg;
+          morphBox.classList.remove('switching');
+        }, 210);
+      });
+    });
+
+    // 5. Car Class Switcher & Live Price Calculation
+    const classNames = ['Седан / Купе', 'Кроссовер', 'Внедорожник'];
+    let currentClassIdx = 0;
+    let selectedProgram = 'KINETIC PRO';
+    let selectedBay = 'B-01';
+
+    function formatRub(num) {
+      return num.toLocaleString('ru-RU') + ' ₽';
+    }
+
+    const classBtns = document.querySelectorAll('.class-btn');
+    const classIndicator = document.getElementById('class-indicator');
+
+    function updateClassPrices(idx) {
+      currentClassIdx = idx;
+      classIndicator.style.transform = `translateX(${idx * 100}%)`;
+      classBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
+      document.getElementById('calc-class-label').textContent = classNames[idx];
+
+      // Update tariff cards
+      document.querySelectorAll('.tariff-price').forEach(el => {
+        const arr = el.dataset.prices.split(',').map(Number);
+        el.textContent = formatRub(arr[idx]);
+      });
+
+      // Update calculator pills
+      document.querySelectorAll('.prog-pill').forEach(pill => {
+        const arr = pill.dataset.prices.split(',').map(Number);
+        pill.querySelector('.prog-price-tag').textContent = formatRub(arr[idx]);
+      });
+
+      recalcTotal();
+    }
+
+    classBtns.forEach(btn => {
+      btn.addEventListener('click', () => updateClassPrices(Number(btn.dataset.class)));
+    });
+
+    // Calculator logic
+    const progPills = document.querySelectorAll('.prog-pill');
+    progPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        progPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        selectedProgram = pill.dataset.prog;
+        recalcTotal();
+      });
+    });
+
+    const addonCheckboxes = document.querySelectorAll('#addons-list input[type="checkbox"]');
+    addonCheckboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        cb.closest('.addon-item').classList.toggle('checked', cb.checked);
+        recalcTotal();
+      });
+    });
+
+    function recalcTotal() {
+      const activePill = document.querySelector('.prog-pill.active');
+      const basePrices = activePill.dataset.prices.split(',').map(Number);
+      let totalPrice = basePrices[currentClassIdx];
+      let totalMins = Number(activePill.dataset.mins);
+
+      addonCheckboxes.forEach(cb => {
+        if (cb.checked) {
+          totalPrice += Number(cb.dataset.price);
+          totalMins += Number(cb.dataset.mins);
+        }
+      });
+
+      document.getElementById('total-price').textContent = formatRub(totalPrice);
+      document.getElementById('total-time').textContent = `${totalMins} мин`;
+      return { totalPrice, totalMins };
+    }
+
+    // Parking bay selection
+    document.querySelectorAll('.bay-slot.free').forEach(slot => {
+      slot.addEventListener('click', () => {
+        document.querySelectorAll('.bay-slot.free').forEach(s => s.classList.remove('selected'));
+        slot.classList.add('selected');
+        selectedBay = slot.dataset.bay;
+      });
+    });
+
+    // 6. Booking Modal
+    const modal = document.getElementById('booking-modal');
+    const passTicket = document.getElementById('pass-ticket');
+    const bookingForm = document.getElementById('booking-form');
+
+    function openBookingModal(programOverride) {
+      if (programOverride) {
+        selectedProgram = programOverride;
+        progPills.forEach(p => {
+          p.classList.toggle('active', p.dataset.prog === programOverride);
+        });
+      }
+      const { totalPrice } = recalcTotal();
+      document.getElementById('modal-summary-text').textContent =
+        `Программа: ${selectedProgram} • ${classNames[currentClassIdx]} • Бокс ${selectedBay} • ${formatRub(totalPrice)}`;
+      passTicket.style.display = 'none';
+      bookingForm.style.display = 'grid';
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    document.querySelectorAll('.open-booking-btn').forEach(btn => {
+      btn.addEventListener('click', () => openBookingModal(btn.dataset.program));
+    });
+
+    document.querySelectorAll('.select-tariff-btn').forEach(btn => {
+      btn.addEventListener('click', () => openBookingModal(btn.dataset.tariff));
+    });
+
+    document.getElementById('book-configured-btn').addEventListener('click', () => openBookingModal());
+
+    document.getElementById('close-modal-btn').addEventListener('click', () => {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+    });
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal) {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    bookingForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('client-name').value.trim();
+      const plate = document.getElementById('car-plate').value.trim().toUpperCase();
+      const code = 'KW-' + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('generated-pass-code').textContent = code;
+      document.getElementById('pass-details').textContent =
+        `${name}, бокс ${selectedBay} закреплен за авто ${plate}. Шлагбаум откроется автоматически.`;
+      bookingForm.style.display = 'none';
+      passTicket.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
